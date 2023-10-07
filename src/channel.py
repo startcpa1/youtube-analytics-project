@@ -56,3 +56,54 @@ class Channel:
                 'video_count': self.view_count,
             }
             json.dump(dict_channel, f, ensure_ascii=False)
+
+    def __str__(self):
+        return f'{self.title}({self.url})'
+
+    def __add__(self, other):
+        """
+        Сложение / вычитание / сравнение идет по количеству подписчиков.
+        """
+        if isinstance(other, Channel):
+            total_subscribers = int(self.subscriber_count) + int(other.subscriber_count)
+            return f'Всего - {total_subscribers}'
+        else:
+            raise TypeError('Сложение не поддерживается для данного типа каналов')
+
+    def __sub__(self, other):
+        if isinstance(other, Channel):
+            sub_subcribers = int(self.subscriber_count) - int(other.subscriber_count)
+            return f'Разница {sub_subcribers}'
+        else:
+            raise TypeError('Вычитание не поддерживается для данного типа каналов')
+
+    def __ge__(self, other):
+        if isinstance(other, Channel):
+            return int(self.subscriber_count) >= int(other.subscriber_count)
+        else:
+            raise TypeError('Сравнение не поддерживается для данного типа каналов')
+
+    def __le__(self, other):
+        if isinstance(other, Channel):
+            return int(self.subscriber_count) <= int(other.subscriber_count)
+        else:
+            raise TypeError('Сравнение не поддерживается для данного типа каналов')
+
+    def __gt__(self, other):
+        if isinstance(other, Channel):
+            return int(self.subscriber_count) > int(other.subscriber_count)
+        else:
+            raise TypeError('Сравнение не поддерживается для данного типа каналов')
+
+    def __lt__(self, other):
+        if isinstance(other, Channel):
+            return int(self.subscriber_count) < int(other.subscriber_count)
+        else:
+            raise TypeError('Сравнение не поддерживается для данного типа каналов')
+
+    def __eq__(self, other):
+        if isinstance(other, Channel):
+            if int(self.subscriber_count) == int(other.subscriber_count):
+                return True
+            else:
+                return False
