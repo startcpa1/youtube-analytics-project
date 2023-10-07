@@ -62,7 +62,7 @@ class Channel:
 
     def __add__(self, other):
         """
-        Сложение / вычитание / сравнение идет по количеству подписчиков.
+        Сложение по количеству подписчиков.
         """
         if isinstance(other, Channel):
             total_subscribers = int(self.subscriber_count) + int(other.subscriber_count)
@@ -71,6 +71,9 @@ class Channel:
             raise TypeError('Сложение не поддерживается для данного типа каналов')
 
     def __sub__(self, other):
+        """
+        Вычитание по количеству подписчиков.
+        """
         if isinstance(other, Channel):
             sub_subcribers = int(self.subscriber_count) - int(other.subscriber_count)
             return f'Разница {sub_subcribers}'
@@ -78,30 +81,45 @@ class Channel:
             raise TypeError('Вычитание не поддерживается для данного типа каналов')
 
     def __ge__(self, other):
+        """
+        Сравнение больше или равно
+        """
         if isinstance(other, Channel):
             return int(self.subscriber_count) >= int(other.subscriber_count)
         else:
             raise TypeError('Сравнение не поддерживается для данного типа каналов')
 
     def __le__(self, other):
+        """
+        Сравнение меньше или равно
+        """
         if isinstance(other, Channel):
             return int(self.subscriber_count) <= int(other.subscriber_count)
         else:
             raise TypeError('Сравнение не поддерживается для данного типа каналов')
 
     def __gt__(self, other):
+        """
+        Сравнение на больше 1 экземпляра со 2
+        """
         if isinstance(other, Channel):
             return int(self.subscriber_count) > int(other.subscriber_count)
         else:
             raise TypeError('Сравнение не поддерживается для данного типа каналов')
 
     def __lt__(self, other):
+        """
+        Сравнение на меньше 1 экземпляра со 2
+        """
         if isinstance(other, Channel):
             return int(self.subscriber_count) < int(other.subscriber_count)
         else:
             raise TypeError('Сравнение не поддерживается для данного типа каналов')
 
     def __eq__(self, other):
+        """
+        Сравнение на равенство 1 экземпляра со 2
+        """
         if isinstance(other, Channel):
             if int(self.subscriber_count) == int(other.subscriber_count):
                 return True
