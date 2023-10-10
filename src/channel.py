@@ -5,9 +5,6 @@ from googleapiclient.discovery import build
 
 class Channel:
     """Класс для ютуб-канала"""
-    # учетные данные приложения
-    os.environ[
-        "GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/aleksandr/dev/keys/seismic-sentry-180215-e4dd0739f7e7.json"
 
     api_key: str = os.getenv('YT_API_KEY')  # YT_API_KEY скопирован из гугла и вставлен в переменные окружения
 
@@ -55,7 +52,7 @@ class Channel:
                 'view_count': self.view_count,
                 'video_count': self.view_count,
             }
-            json.dump(dict_channel, f, ensure_ascii=False)
+            json.dump(dict_channel, f, ensure_ascii=False, indent=4)
 
     def __str__(self):
         return f'{self.title}({self.url})'
